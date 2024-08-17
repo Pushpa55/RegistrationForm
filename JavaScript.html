@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="Style.css">
+    <script>
+        function validate()
+        {
+            var fname=document.f1.fname.value;
+            var lname=document.f1.lname.value;
+            var phone=document.f1.phone.value;
+            var email=document.f1.email.value;
+            var password=document.f1.password.value;
+            var cpassword=document.f1.cpassword.value;
+            var status=status1=status2=status3=status4=false;
+            var alphaExp=/^[a-zA-Z]+$/;
+            var numExp=/^[0-9]+$/;
+            var emailExp=/^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$/;
+            var passwordExp=/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,30}$/
+
+            if(fname=="")
+            {
+               document.getElementById("fnameNote").innerHTML="Please Enter First Name";
+               status=false
+            }
+            else
+            {
+               if(fname.match(alphaExp))
+               {
+                  document.getElementById("fnameNote").innerHTML=""
+                  status=true
+               }
+               else
+               {
+                  document.getElementById("fnameNote").innerHTML="Please Enter Charactors Only ";
+                  status=false
+               }
+
+            }
+            if(lname=="")
+            {
+               document.getElementById("lnameNote").innerHTML="Please Enter Last Name";
+               status1=false
+            }
+            else
+            {
+               if(lname.match(alphaExp))
+               {
+                  document.getElementById("lnameNote").innerHTML="";
+                  status1=true
+               }
+               else
+               {
+                  document.getElementById("lnameNote").innerHTML="Please Enter Charactors Only";
+                  status1=false
+               }
+            }
+            if(phone=="")
+            {
+               document.getElementById("phoneNote").innerHTML="Please Phone Number";
+               status2=false
+            }
+            else
+            {
+               if(phone.match(numExp))
+               {
+                  if(phone.length==10)
+                  {
+                     document.getElementById("phoneNote").innerHTML="";
+                     status2=true
+                  }
+                  else{
+                     document.getElementById("phoneNote").innerHTML="Phone number must be 10 digits only";
+                     status2=false
+                  }
+               }
+               else{
+                  document.getElementById("phoneNote").innerHTML="Please Enter Numbers Only";
+                  status2=false
+               }
+            }
+            if(email=="")
+            {
+               document.getElementById("emailNote").innerHTML="Please Email ID Number";
+               status3=false
+            }
+            else
+            {
+               if(email.match(emailExp))
+               {
+                  document.getElementById("emailNote").innerHTML="";
+                  status3=true
+               }
+               else{
+                  document.getElementById("emailNote").innerHTML="Please Enter Valid Email ID";
+                  status3=false
+               }
+            }
+            if(password=="")
+            {
+               document.getElementById("passwordNote").innerHTML="Please enter password";
+               status4=false
+            }
+            else{
+                     if(password.length>=6 && password.length<=9)
+                     {
+                        if(password.match(passwordExp))
+                        {
+                           document.getElementById("passwordNote").innerHTML="";
+                           status4=true
+                        }
+                        else
+                        {
+                           document.getElementById("passwordNote").innerHTML="please enter one upper,one lower and one digit including specail charater";
+                           status4=false
+                        }
+                     }
+                     else{
+                        document.getElementById("passwordNote").innerHTML="Please Enter password length in b/w 6 to 9";
+                        status4=false
+                     }
+            }
+            if(cpassword=="")
+            {
+               document.getElementById("cpasswordNote").innerHTML="Please enter  confirm password";
+               status5=false
+            }
+            else{
+               if(password==cpassword)
+                     {
+                        if(password.match(passwordExp))
+                        {
+                           document.getElementById("cpasswordNote").innerHTML="";
+                           status5=true
+                        }
+                        else
+                        {
+                           document.getElementById("cpasswordNote").innerHTML="please enter one upper,one lower and one digit including specail charater";
+                           status5=false
+                        }
+                     }
+            
+                     else{
+                        document.getElementById("cpasswordNote").innerHTML="Not Matched";
+                        status4=false
+                     }
+            }
+            if(status==true && status1==true && status2==true && status3==true && status4==true && status5==true)
+             {
+               return true
+             }
+             else{
+               return false
+             }
+        
+       }
+    </script>
+</head>
+<body>
+    <form name="f1" method="post" onsubmit="return validate()" action="AdmissionForm.html">
+         <div>
+            <input type="text" name="fname" placeholder="First Name">
+            <div id="fnameNote" class="errMsg"></div>
+         </div>
+         <div>
+            <input type="text" name="lname" placeholder="Last Name">
+            <div id="lnameNote" class="errMsg"></div>
+         </div>
+         <div>
+            <input type="text" name="phone" placeholder="Phone Number">
+            <div id="phoneNote" class="errMsg"></div>
+         </div>
+         <div>
+            <input type="text" name="email" placeholder="Email ID">
+            <div id="emailNote" class="errMsg"></div>
+         </div>
+         <div>
+            <input type="password" name="password" placeholder="Password">
+            <div id="passwordNote" class="errMsg"></div>
+         </div>
+         <div>
+            <input type="password" name="cpassword" placeholder="Confirm Password">
+            <div id="cpasswordNote" class="errMsg"></div>
+         </div>
+         <div>
+            <input type="submit" value="Send">
+         </div>
+    </form>
+</body>
+</html>
